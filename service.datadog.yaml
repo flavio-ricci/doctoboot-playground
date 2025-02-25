@@ -1,0 +1,16 @@
+---
+schema-version: v2.2
+dd-service: doctoboot-playground
+team: deus
+lifecycle: experimental
+docs:
+- name: Backstage.io
+  provider: link
+  url: https://backstage.doctolib.net/catalog/default/component/doctoboot-playground
+# Please add your Slack channel!
+# contacts:
+# - name: Support Slack
+#   type: slack
+#   contact: https://doctolib.slack.com/archives/YourSlackChannelId
+#
+# For more information about Datadog metadata see https://doctolib.atlassian.net/wiki/x/twBEe

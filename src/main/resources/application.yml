@@ -1,0 +1,17 @@
+server:
+  port: 8080
+  shutdown: graceful
+  servlet:
+    context-path: /doctoboot-playground
+
+spring:
+  application.name: doctoboot-playground
+  main:
+    allow-bean-definition-overriding: true
+  liquibase:
+    change-log: classpath:db/db-changelog.xml
+
+# Actuators
+management:
+  endpoints.web.exposure.include: configprops,env,health,info,logfile,loggers,metrics,prometheus
+  endpoint.health.show-details: always

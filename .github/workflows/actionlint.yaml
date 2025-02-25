@@ -1,0 +1,38 @@
+# DON'T MODIFY THIS WORKFLOW FILE DIRECTLY
+#
+# This workflow is enforced as-code, and should not be modified manually.
+#
+# It permits to lint Github Actions workflows.
+#
+# See https://doctolib.atlassian.net/wiki/x/KICVeQ for more details.
+#
+
+name: '[Org workflow] Run actionlint'
+run-name: '${{ github.event.pull_request.title }}'
+
+on:
+  pull_request:
+    branches: [master, main, staging]
+    paths:
+      - '.github/workflows/*'
+  merge_group:
+
+jobs:
+  actionlint:
+    name: Run actionlint
+    if: '!github.event.pull_request.draft'
+    env:
+      DD_GITHUB_JOB_NAME: Run actionlint
+    runs-on: prod-linux-xs
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: doctolib/actions/checkout@main
+        env:
+          RUNNER_EPHEMERAL: true # permits to speed up checkout, as it avoids a "git sparse-checkout disable" which takes a significant amount of time
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.event.after || github.sha }}
+          github-server-url: http://git-cdn.cicd-prod-aws-global.internal.doctolib:8000
+          sparse-checkout: '.github/workflows'
+      - name: Lint Github Actions workflows
+        uses: doctolib/actions/actionlint@actionlint-v0.0.15

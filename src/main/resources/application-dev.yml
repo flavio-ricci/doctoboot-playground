@@ -1,0 +1,25 @@
+# Spring
+spring:
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:postgres}
+#    username: "${DATABASE_USER:db_user}"
+#    password: "${DATABASE_PASSWORD:db_pass}"
+    driver-class-name: org.postgresql.Driver
+
+# Doctoboot
+doctoboot:
+  feature.switches.enabled: false
+  database:
+    migration:
+      enabled: false
+
+  authentication:
+      enabled: true
+
+interservice:
+  name: doctoboot-playground-test
+  server:
+    doctoboot-playground-test.config: '{"local_name": "doctoboot-playground-test", "service_name": "doctoboot-playground-test", "algorithm": "HS256", "clients": { "external-client": "secret1234"}}'
+  client:
+    test-ctx-propagation.config: '{"local_name": "external-client", "target_service": "external",  "algorithm": "HS256", "secret": "secret1234"}'
+

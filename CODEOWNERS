@@ -1,0 +1,5 @@
+* @doctolib/deus
+Dockerfile @doctolib/deus @doctolib/deployment
+docker-compose.yml @doctolib/deus @doctolib/deployment
+.github @doctolib/deus @doctolib/deployment
+pom.xml @doctolib/deus @doctolib/deployment

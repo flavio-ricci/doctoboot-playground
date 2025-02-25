@@ -1,0 +1,23 @@
+name: PR Automation
+on:
+  pull_request_target:
+    types: [labeled]
+
+jobs:
+  auto-approve:
+    runs-on: prod-linux-s
+    timeout-minutes: 5
+    if: ${{ github.event.label.name == 'auto-approve' }}
+    steps:
+      - uses: doctolib/actions/auto-approve@main
+        with:
+          github-token: ${{ secrets.DOCTOCIBOT_GITHUB_TOKEN }}
+  auto-merge:
+    runs-on: prod-linux-s
+    timeout-minutes: 5
+    if: ${{ github.event.label.name == 'auto-merge' }}
+    steps:
+      - uses: doctolib/actions/auto-merge@main
+        with:
+          pr-url: ${{github.event.pull_request.html_url}}
+          github-token: ${{ secrets.DOCTOCIBOT_GITHUB_TOKEN }}

@@ -1,0 +1,16 @@
+{
+  "@doctolib/generator-doctoboot": {
+    "subgenerator": "server",
+    "teamName": "deus",
+    "githubSlug": "doctoboot-playground",
+    "appName": "doctoboot-playground",
+    "packageName": "com.doctolib.doctobootplayground",
+    "language": "java",
+    "databaseType": "postgresql",
+    "interservice": true,
+    "packageFolder": "com/doctolib/doctobootplayground",
+    "buildTool": "maven",
+    "appDescr": "doctoboot playground",
+    "features": []
+  }
+}

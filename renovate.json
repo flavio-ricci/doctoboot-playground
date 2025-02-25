@@ -1,0 +1,18 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+      "local>doctolib/renovate-config"
+    ],
+    "branchPrefix": "renovate-",
+    "prHourlyLimit": 3,
+    "prConcurrentLimit": 100,
+    "rebaseWhen": "conflicted",
+    "enabledManagers": ["maven-wrapper", "maven", "github-actions", "dockerfile", "docker-compose"],
+    "packageRules": [
+      {
+        "matchManagers": ["maven-wrapper", "maven", "github-actions", "dockerfile", "docker-compose"],
+        "addLabels": ["auto-approve", "maven", "dependencies"],
+        "extends": [":automergeMinor"]
+      }
+    ]
+  }

@@ -1,0 +1,57 @@
+name: code-checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+env:
+  MAVEN_ARGS: "-B --no-transfer-progress"
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  format:
+    name: Format check
+    runs-on: prod-linux-m
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup java JDK
+        uses: doctolib/actions/setup-java@setup-java-v0.1.4
+        with:
+          distribution: 'zulu'
+          java-version-file: .java-version
+          cache: 'maven'
+      - name: Check format with Spotless
+        run: ./mvnw spotless:check
+  unit-tests:
+    name: Run tests
+    runs-on: prod-linux-m
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Required for SonarQube
+          fetch-depth: 0
+      - name: Setup java JDK
+        uses: doctolib/actions/setup-java@setup-java-v0.1.4
+        with:
+          distribution: 'zulu'
+          java-version-file: .java-version
+          cache: 'maven'
+      - name: Tests with Maven
+        run: |
+          ./mvnw verify --fail-at-end
+      - name: Send sonar results
+        continue-on-error: true
+        run: |
+          ./mvnw sonar:sonar
+      - name: Log test output on failure
+        if: failure() || cancelled()
+        run: find . -type f -path "*test-reports/*-output.txt" -exec tail -n +1 {} +

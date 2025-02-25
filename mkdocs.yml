@@ -1,0 +1,17 @@
+site_name: doctoboot playground
+site_description: doctoboot playground Technical Documentation
+site_author: deus
+repo_url: https://github.com/doctolib/doctoboot-playground
+edit_uri: ''
+copyright: Doctolib
+site_url: https://backstage.doctolib.net/docs/default/component/doctoboot-playground
+docs_dir: doc
+nav:
+  - Home: index.md
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+plugins:
+  - techdocs-core

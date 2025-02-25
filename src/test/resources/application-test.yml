@@ -1,0 +1,22 @@
+doctoboot:
+  authentication:
+    enabled: true
+    accepted-clock-skew: PT30S
+    # please do not change the jwks-uri "localhost:9876" part,
+    # because it is expected by the class DoctobootJwtTestSupport
+    trusted-issuers:
+      - issuer: https://auth-staging.doctolib.com/patient/realms/doctolib-patient
+        jwks-uri: http://localhost:9876/jwks
+  context:
+    enabled: true
+
+interservice:
+  name: doctoboot-playground-test
+  server:
+    doctoboot-playground-test.config: '{"local_name": "doctoboot-playground-test", "service_name": "doctoboot-playground-test", "algorithm": "HS256", "clients": { "external-client": "secret1234"}}'
+  client:
+    test-ctx-propagation.config: '{"local_name": "external-client", "target_service": "external",  "algorithm": "HS256", "secret": "secret1234"}'
+
+logging:
+  level:
+    com.doctolib: DEBUG

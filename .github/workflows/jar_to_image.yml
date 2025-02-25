@@ -1,0 +1,38 @@
+name: Build & publish docker image
+
+permissions:
+  contents: read
+  id-token: write
+
+on:
+  push:
+
+jobs:
+  build-jar:
+    name: Build the JAR
+    runs-on: prod-linux-m
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: doctolib/actions/setup-java@setup-java-v0.1.4
+        with:
+          distribution: 'zulu'
+          java-version-file: .java-version
+          cache: 'maven'
+
+      - name: Build jar
+        env:
+          MAVEN_ARGS: "-B --no-transfer-progress"
+        run: |
+          ./mvnw -DskipTests package
+
+      - name: Docker build
+        uses: doctolib/actions/docker-build@main
+        with:
+          image: doctoboot-playground
+          enable_push: false
+          aws_iam_role: arn:aws:iam::580698825394:role/gha_${{ github.event.repository.name }}_br_all
+          build_args: |
+            CODEARTIFACT_AUTH_TOKEN=${{ env.CODEARTIFACT_AUTH_TOKEN }}
