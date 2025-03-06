@@ -1,7 +1,7 @@
 # Spring
 spring:
   datasource:
-    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:postgres}
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:doctolib-development-db1}
 #    username: "${DATABASE_USER:db_user}"
 #    password: "${DATABASE_PASSWORD:db_pass}"
     driver-class-name: org.postgresql.Driver
