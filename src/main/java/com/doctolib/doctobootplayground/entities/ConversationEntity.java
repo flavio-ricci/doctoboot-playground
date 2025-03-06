@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -52,4 +53,7 @@ public class ConversationEntity {
 
     @Column
     Long creatorPatientAccountId;
+
+    @OneToMany(mappedBy = "conversation")
+    List<MessageEntity> messages;
 }
