@@ -25,22 +25,22 @@ public class MessagesService {
     }
 
     private MessageDTO convertToDTO(MessageEntity messageEntity) {
-        MessageDTO messageDTO = new MessageDTO();
-        messageDTO.setId(messageEntity.getId());
-        messageDTO.setConversationId(messageEntity.getConversation().getId());
-        messageDTO.setStatus(messageEntity.getStatus());
-        messageDTO.setSource(messageEntity.getSource());
-        messageDTO.setTankerEncryptedBody(messageEntity.getTankerEncryptedBody());
-        messageDTO.setCreatorDoctorAccountId(messageEntity.getCreatorDoctorAccountId());
-        messageDTO.setViewedByPatientAt(messageEntity.getViewedByPatientAt());
-        messageDTO.setViewedByPractitionerAt(messageEntity.getViewedByPractitionerAt());
-        messageDTO.setDeletedAt(messageEntity.getDeletedAt());
-        messageDTO.setExternalId(messageEntity.getExternalId());
-        messageDTO.setCreatedAt(messageEntity.getCreatedAt());
-        messageDTO.setUpdatedAt(messageEntity.getUpdatedAt());
-        messageDTO.setCreatorPatientAccountId(messageEntity.getCreatorPatientAccountId());
-        messageDTO.setSentAt(messageEntity.getSentAt());
-        messageDTO.setServerEncryptedBody(messageEntity.getServerEncryptedBody());
-        return messageDTO;
+        return MessageDTO.builder()
+                .id(messageEntity.getId())
+                .conversationId(messageEntity.getConversation().getId())
+                .status(messageEntity.getStatus())
+                .source(messageEntity.getSource())
+                .tankerEncryptedBody(messageEntity.getTankerEncryptedBody())
+                .creatorDoctorAccountId(messageEntity.getCreatorDoctorAccountId())
+                .viewedByPatientAt(messageEntity.getViewedByPatientAt())
+                .viewedByPractitionerAt(messageEntity.getViewedByPractitionerAt())
+                .deletedAt(messageEntity.getDeletedAt())
+                .externalId(messageEntity.getExternalId())
+                .createdAt(messageEntity.getCreatedAt())
+                .updatedAt(messageEntity.getUpdatedAt())
+                .creatorPatientAccountId(messageEntity.getCreatorPatientAccountId())
+                .sentAt(messageEntity.getSentAt())
+                .serverEncryptedBody(messageEntity.getServerEncryptedBody())
+                .build();
     }
 }
