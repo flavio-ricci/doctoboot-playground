@@ -30,21 +30,21 @@ public class ConversationsService {
     }
 
     private ConversationDTO convertToDTO(ConversationEntity conversationEntity) {
-        ConversationDTO conversationDTO = new ConversationDTO();
-        conversationDTO.setId(conversationEntity.getId());
-        conversationDTO.setMessagingProfileId(conversationEntity.getMessagingProfileId());
-        conversationDTO.setPatientId(conversationEntity.getPatientId());
-        conversationDTO.setSource(conversationEntity.getSource());
-        conversationDTO.setCreatorDoctorAccountId(conversationEntity.getCreatorDoctorAccountId());
-        conversationDTO.setStatus(conversationEntity.getStatus());
-        conversationDTO.setExternalId(conversationEntity.getExternalId());
-        conversationDTO.setTankerEncryptedNote(conversationEntity.getTankerEncryptedNote());
-        conversationDTO.setMotiveId(conversationEntity.getMotiveId());
-        conversationDTO.setLastActivityAt(conversationEntity.getLastActivityAt());
-        conversationDTO.setCreatedAt(conversationEntity.getCreatedAt());
-        conversationDTO.setUpdatedAt(conversationEntity.getUpdatedAt());
-        conversationDTO.setCanPatientReply(conversationEntity.getCanPatientReply());
-        conversationDTO.setCreatorPatientAccountId(conversationEntity.getCreatorPatientAccountId());
-        return conversationDTO;
+        return ConversationDTO.builder()
+                .id(conversationEntity.getId())
+                .messagingProfileId(conversationEntity.getMessagingProfileId())
+                .patientId(conversationEntity.getPatientId())
+                .source(conversationEntity.getSource())
+                .creatorDoctorAccountId(conversationEntity.getCreatorDoctorAccountId())
+                .status(conversationEntity.getStatus())
+                .externalId(conversationEntity.getExternalId())
+                .tankerEncryptedNote(conversationEntity.getTankerEncryptedNote())
+                .motiveId(conversationEntity.getMotiveId())
+                .lastActivityAt(conversationEntity.getLastActivityAt())
+                .createdAt(conversationEntity.getCreatedAt())
+                .updatedAt(conversationEntity.getUpdatedAt())
+                .canPatientReply(conversationEntity.getCanPatientReply())
+                .creatorPatientAccountId(conversationEntity.getCreatorPatientAccountId())
+                .build();
     }
 }
