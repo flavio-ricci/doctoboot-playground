@@ -2,11 +2,9 @@ package com.doctolib.doctobootplayground.services;
 
 import com.doctolib.doctobootplayground.dto.PracticeDTO;
 import com.doctolib.doctobootplayground.entities.PracticeEntity;
-
+import com.doctolib.doctobootplayground.repositories.PracticesRepository;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import com.doctolib.doctobootplayground.repositories.PracticesRepository;
 import org.springframework.stereotype.Service;
 
 @Service

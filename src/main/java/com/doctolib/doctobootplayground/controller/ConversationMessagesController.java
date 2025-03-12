@@ -2,13 +2,12 @@ package com.doctolib.doctobootplayground.controller;
 
 import com.doctolib.doctobootplayground.dto.MessageDTO;
 import com.doctolib.doctobootplayground.services.MessagesService;
+import java.util.List;
+import java.util.UUID;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.UUID;
 
 @RequestMapping("/conversations")
 @RestController
