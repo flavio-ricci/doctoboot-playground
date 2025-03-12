@@ -3,12 +3,11 @@ package com.doctolib.doctobootplayground.services;
 import com.doctolib.doctobootplayground.dto.MessageDTO;
 import com.doctolib.doctobootplayground.entities.MessageEntity;
 import com.doctolib.doctobootplayground.repositories.MessagesRepository;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 @Service
 public class MessagesService {
@@ -19,7 +18,9 @@ public class MessagesService {
     }
 
     public List<MessageDTO> getAllByConversationId(UUID conversationId) {
-        return messagesRepository.findByConversationId(conversationId, Sort.by(Sort.Direction.DESC, "createdAt")).stream()
+        return messagesRepository
+                .findByConversationId(conversationId, Sort.by(Sort.Direction.DESC, "createdAt"))
+                .stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }

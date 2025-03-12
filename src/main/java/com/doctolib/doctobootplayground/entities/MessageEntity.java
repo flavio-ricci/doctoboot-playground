@@ -1,10 +1,9 @@
 package com.doctolib.doctobootplayground.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-
 import java.util.Date;
 import java.util.UUID;
+import lombok.Data;
 
 @Data
 @Entity
@@ -18,8 +17,8 @@ public class MessageEntity {
     @JoinColumn(name = "conversation_id", referencedColumnName = "id")
     ConversationEntity conversation;
 
-//    @Column
-//    UUID conversationId;
+    //    @Column
+    //    UUID conversationId;
 
     @Column
     String status;

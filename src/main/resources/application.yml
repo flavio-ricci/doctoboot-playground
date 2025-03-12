@@ -10,6 +10,8 @@ spring:
     allow-bean-definition-overriding: true
   liquibase:
     change-log: classpath:db/db-changelog.xml
+  profiles:
+    active: ecs
 
 # Actuators
 management:
